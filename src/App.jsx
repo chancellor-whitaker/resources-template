@@ -1,5 +1,5 @@
-export default function App(props) {
-  const { Wrapper, Dropdown, useDropdown } = props;
+export default function App(resources) {
+  const { useDropdown, Dropdown, Wrapper } = resources;
 
   const dropdown = useDropdown({
     options: [

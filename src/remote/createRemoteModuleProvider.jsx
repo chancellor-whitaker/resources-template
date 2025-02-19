@@ -1,15 +1,19 @@
 import createLoadRemoteModule from "@paciolan/remote-module-loader";
 import { useEffect, useState } from "react";
 
-export const createModuleProvider = ({ Context, config, url }) => {
-  const loadModule = createLoadRemoteModule(config);
+export const createRemoteModuleProvider = ({
+  url = import.meta.env.remoteUrl,
+  Context,
+  config,
+}) => {
+  const loadRemoteModule = createLoadRemoteModule(config);
 
-  const pendingModule = loadModule(url);
+  const pendingRemoteModule = loadRemoteModule(url);
 
-  const ModuleProvider = ({ children }) => {
-    const module = usePromise(pendingModule);
+  const RemoteModuleProvider = ({ children }) => {
+    const remoteModule = usePromise(pendingRemoteModule);
 
-    const defaultExport = module && module.default;
+    const defaultExport = remoteModule && remoteModule.default;
 
     return (
       <Context.Provider value={defaultExport}>
@@ -18,7 +22,7 @@ export const createModuleProvider = ({ Context, config, url }) => {
     );
   };
 
-  return ModuleProvider;
+  return RemoteModuleProvider;
 };
 
 const usePromise = (promise) => {
