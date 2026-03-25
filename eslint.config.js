@@ -6,7 +6,7 @@ import globals from "globals";
 import js from "@eslint/js";
 
 export default [
-  // perfectionist.configs["recommended-line-length"],
+  perfectionist.configs["recommended-line-length"],
   { ignores: ["dist"] },
   {
     rules: {
